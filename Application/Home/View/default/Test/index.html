@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div>
+			{:dump($data)}
+			<notempty name="msg">
+				发送错误:{$msg}
+			<else />
+				<notempty name="pkglist">
+					更新包列表：
+					<volist id="vo" name="pkglist">
+						{:dump($vo)}
+					</volist>
+				<else/>
+				无更新包
+				</notempty>
+			</notempty>
+		</div>
+		<script type="text/javascript" src="__CDN__/jquery/2.1.1/jquery.min.js"></script>
+		<script type="text/javascript">
+				
+		</script>
+	</body>
+</html>

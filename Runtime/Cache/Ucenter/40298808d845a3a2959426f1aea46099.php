@@ -29,8 +29,8 @@
 <script type="text/javascript" src="/github/2015upgrade/Public/cdn/sco1.0.2-8/js/sco.message.js"></script>
 
 <!-- 自定义模块通用样式 -->
-<link rel="stylesheet" type="text/css" href="/github/2015upgrade/Public/Ucenter/css/common.css?v=1432712362" />
-<script type="text/javascript" src="/github/2015upgrade/Public/cdn/common/common.js?v=1432712362"></script>
+<link rel="stylesheet" type="text/css" href="/github/2015upgrade/Public/Ucenter/css/common.css?v=1432716591" />
+<script type="text/javascript" src="/github/2015upgrade/Public/cdn/common/common.js?v=1432716591"></script>
 
 
 
@@ -107,8 +107,8 @@
 									<?php echo ($vo["cur_version"]); ?>
 								</th>
 								<th>
-									<?php echo ($vo["auth_key"]); ?>
-									<a href="javascript:void(0)" data-clipboard-text="<?php echo ($vo["auth_key"]); ?>"  class="js_copy btn btn-sm btn-primary"><i class="fa fa-copy"></i>复制</a>
+									<pre><code><?php echo htmlspecialchars($vo['auth_key']);?></code></pre>
+									<a href="javascript:void(0)" data-clipboard-text="<?php echo htmlspecialchars($vo['auth_key']);?>"  class="js_copy btn btn-sm btn-primary"><i class="fa fa-copy"></i>复制</a>
 								</th>
 								<th>
 									<?php echo ($vo["domain"]); ?>
@@ -145,6 +145,24 @@
 		<!-- END admin-main-->
 
 		
+	<script type="text/javascript" src="/github/2015upgrade/Public/cdn/zeroclipboard/2.2.0/ZeroClipboard.min.js"></script>
+	
+    <script >
+    	var client = new ZeroClipboard( $(".js_copy") );
+
+			client.on( "ready", function( readyEvent ) {
+			  // alert( "ZeroClipboard SWF is ready!" );
+			
+			  client.on( "aftercopy", function( event ) {
+			    // `this` === `client`
+			    // `event.target` === the element that was clicked
+//			    event.target.style.display = "none";
+			    console.log("Copied text to clipboard: " + event.data["text/plain"] );
+			    $.scojs_message("复制成功!",$.scojs_message.TYPE_OK);
+			  } );
+			} );
+    	
+    </script>
 	<script type="text/javascript">
 		
 	$(function(){
