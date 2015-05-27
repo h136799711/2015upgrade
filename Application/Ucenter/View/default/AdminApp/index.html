@@ -1,0 +1,120 @@
+<extend name="template/base_index" />
+
+
+<block name="area_header">
+	<style type="text/css">
+		
+	.app-list{
+		min-height:360px;
+	}
+	.app-list .dropdown-menu {
+		background-color: rgba(40, 36, 36, 0.2);
+	}
+	.app-list .dropdown-menu>li>a {
+	  display: block;
+	  padding: 5px 0px;
+	  margin: 0px 0px 5px 0px;
+	  clear: both;
+	  font-weight: normal;
+	  line-height: 1.42857143;
+	  color: #FFFFFF;
+	  white-space: nowrap;
+	}
+	</style>
+</block>
+
+<block name="area_body">
+	{:W('Menus/topbar')}
+	<div class="admin-main container-fluid">
+		{:W('Menus/left')}
+		<div class="admin-main-content">
+			{:W('Menus/breadcrumb')}
+			<div class="table-responsive app-list">
+				<table class="table table-bordered table-condensed">
+					<tr>
+						<th>
+							应用ID
+						</th>
+						<th>
+							应用名称
+						</th>
+						<th>
+							当前版本
+						</th>
+						<th>
+							应用KEY
+						</th>
+						<th>
+							应用域名
+						</th>
+						<th>
+							操作
+						</th>
+					</tr>
+					<tbody>
+						<empty name="list">
+							<tr>
+								<td colspan="5">无相关应用信息!</td>
+							</tr>
+						<else/>
+						
+						<volist name="list" id="vo">
+							<tr>
+								<th>
+									{$vo.id}
+								</th>
+								<th>
+									<a href="{:U('Ucenter/AdminApp/view',array('id'=>$vo['id']))}" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i>{$vo.title}</a></th>
+								<th>
+									{$vo.cur_version}
+								</th>
+								<th>
+									{$vo.auth_key}
+									<a href="javascript:void(0)" data-clipboard-text="{$vo.auth_key}"  class="js_copy btn btn-sm btn-primary"><i class="fa fa-copy"></i>复制</a>
+								</th>
+								<th>
+									{$vo.domain}
+								</th>								
+								<th>
+									<div class="clearfix">
+										<div class="">
+										<a href="{:U('Ucenter/AdminApp/addUpgradePkg',array('id'=>$vo['id']))}" class="btn btn-sm btn-primary"><i class="fa fa-arrow-circle-o-up"></i>添加升级包</a>
+										<a href="{:U('Ucenter/AdminApp/viewUpgradeHistory',array('id'=>$vo['id']))}" class="btn btn-sm btn-primary"><i class="fa fa-history"></i>查看升级历史</a>
+										</div>
+										<br />
+										<div class="dropdown">
+									  	<button id="dLabel" type="button" class="btn btn-sm btn-primary"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									    更多操作
+									    <span class="caret"></span>
+									 	</button>
+									  		<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+									  	
+												<li><a href="{:U('Ucenter/AdminApp/edit',array('id'=>$vo['id']))}" class="btn btn-default btn-sm" ><i class="fa fa-edit"></i>编辑</a></li>
+												<li><a href="{:U('Ucenter/AdminApp/delete',array('id'=>$vo['id']))}" class="ajax-get btn btn-danger btn-sm"><i class="fa fa-trash"></i>删除</a></li>
+									
+									
+									 		</ul>
+									  	</div>
+									  </div>
+								</th>
+							</tr>
+						</volist>
+						
+						</empty>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<!-- END admin-main-content -->
+	</div>
+		<!-- END admin-main-->
+</block>
+
+<block name="area_footer">
+	<script type="text/javascript">
+		
+	$(function(){
+		$('.dropdown-toggle').dropdown();
+	})
+	</script>
+</block>
