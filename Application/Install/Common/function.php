@@ -70,6 +70,7 @@ function check_dirfile(){
 	$items = array(
 		array('dir',  '可写', 'success', APP_PATH.'Install/Data/'),
 		array('dir',  '可写', 'success', './Uploads/Picture/'),
+		array('dir',  '可写', 'success', './Uploads/Upgrade/'),
 		array('dir',  '可写', 'success', './Uploads/ueditor/'),
 		array('dir',  '可写', 'success', './Uploads/WxshopPicture/'),
 		array('dir',  '可写', 'success', './Runtime/'),

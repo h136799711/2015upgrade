@@ -6,11 +6,16 @@
 // | Copyright (c) 2013-2016, http://www.itboye.com. All Rights Reserved.
 // |-----------------------------------------------------------------------------------
 
-namespace Home\Model;
+namespace Common\Model;
 
 use Think\Model;
 
 class UpgradeInfoModel extends Model{
 	
 	
+	
+	protected $_auto = array(
+		array("create_time",NOW_TIME,self::MODEL_INSERT),
+		array("status",0,self::MODEL_INSERT),
+	);
 }

@@ -2,7 +2,25 @@
 
 
 <block name="area_header">
-
+	<style type="text/css">
+		
+	.app-list{
+		min-height:360px;
+	}
+	.app-list .dropdown-menu {
+		background-color: rgba(40, 36, 36, 0.2);
+	}
+	.app-list .dropdown-menu>li>a {
+	  display: block;
+	  padding: 5px 0px;
+	  margin: 0px 0px 5px 0px;
+	  clear: both;
+	  font-weight: normal;
+	  line-height: 1.42857143;
+	  color: #FFFFFF;
+	  white-space: nowrap;
+	}
+	</style>
 </block>
 
 <block name="area_body">
@@ -11,7 +29,81 @@
 		{:W('Menus/left')}
 		<div class="admin-main-content">
 			{:W('Menus/breadcrumb')}
-			
+			<div class="table-responsive app-list">
+				<table class="table table-bordered table-condensed">
+					<tr>
+						<th>
+							应用ID
+						</th>
+						<th>
+							应用名称
+						</th>
+						<th>
+							当前版本
+						</th>
+						<th>
+							应用KEY
+						</th>
+						<th>
+							应用授权域名
+						</th>
+						<th>
+							操作
+						</th>
+					</tr>
+					<tbody>
+						<empty name="list">
+							<tr>
+								<td colspan="5">无相关应用信息!</td>
+							</tr>
+						<else/>
+						
+						<volist name="list" id="vo">
+							<tr>
+								<th>
+									{$vo.id}
+								</th>
+								<th>
+									<a href="{:U('Ucenter/UcenterApp/view',array('id'=>$vo['id']))}" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i>{$vo.title}</a></th>
+								<th>
+									{$vo.version}
+								</th>
+								<th>
+									<pre><code>{:htmlspecialchars($vo['auth_key'])}</code></pre>
+									<a href="javascript:void(0)" data-clipboard-text="{:htmlspecialchars($vo['auth_key'])}"  class="js_copy btn btn-sm btn-primary"><i class="fa fa-copy"></i>复制</a>
+								</th>
+								<th>
+									{$vo.domain}
+								</th>								
+								<th>
+									<div class="clearfix">
+										<div class="">
+										<a href="{:U('Ucenter/UpgradeInfo/add',array('appid'=>$vo['app_id']))}" class="btn btn-sm btn-primary"><i class="fa fa-arrow-circle-o-up"></i>添加升级包</a>
+										<a href="{:U('Ucenter/UpgradeInfo/index',array('appid'=>$vo['app_id']))}" class="btn btn-sm btn-primary"><i class="fa fa-history"></i>查看历史升级包</a>
+										</div>
+										<br />
+										<div class="dropdown">
+									  	<button id="dLabel" type="button" class="btn btn-sm btn-primary"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									    更多操作
+									    <span class="caret"></span>
+									 	</button>
+									  		<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+									  	
+												<li><a href="{:U('Ucenter/UcenterApp/edit',array('id'=>$vo['id']))}" class="btn btn-default btn-sm" ><i class="fa fa-edit"></i>编辑</a></li>
+												<li><a href="{:U('Ucenter/UcenterApp/delete',array('id'=>$vo['id']))}" class="ajax-get btn btn-danger btn-sm"><i class="fa fa-trash"></i>删除</a></li>
+									
+									
+									 		</ul>
+									  	</div>
+									  </div>
+								</th>
+							</tr>
+						</volist>
+						
+						</empty>
+					</tbody>
+				</table>
+			</div>
 		</div>
 		<!-- END admin-main-content -->
 	</div>
@@ -19,5 +111,28 @@
 </block>
 
 <block name="area_footer">
+	<script type="text/javascript" src="__CDN__/zeroclipboard/2.2.0/ZeroClipboard.min.js"></script>
+	
+    <script >
+    	var client = new ZeroClipboard( $(".js_copy") );
 
+			client.on( "ready", function( readyEvent ) {
+			  // alert( "ZeroClipboard SWF is ready!" );
+			
+			  client.on( "aftercopy", function( event ) {
+			    // `this` === `client`
+			    // `event.target` === the element that was clicked
+//			    event.target.style.display = "none";
+			    console.log("Copied text to clipboard: " + event.data["text/plain"] );
+			    $.scojs_message("复制成功!",$.scojs_message.TYPE_OK);
+			  } );
+			} );
+    	
+    </script>
+	<script type="text/javascript">
+		
+	$(function(){
+		$('.dropdown-toggle').dropdown();
+	})
+	</script>
 </block>

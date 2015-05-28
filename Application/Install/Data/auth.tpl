@@ -8,6 +8,8 @@
 
 
 // 必须定义
+
+define('UC_DOMAIN', 'ucenter.itboye.com'); //授权域名
 define('UC_AUTH_KEY', '[AUTH_KEY]'); //加密KEY
 define('UC_APP_ID', 1); //应用ID
 define('UC_API_TYPE', 'Model'); //可选值 Model / Service

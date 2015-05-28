@@ -14,14 +14,15 @@ class UcenterAppController extends UcenterController{
 		
 		$page = array('curpage'=>I('get.p'),C('LIST_ROWS'));
 		
-		$result = apiCall("UcenterApp/query", array($map,$page));
+		$result = apiCall("Ucenter/UcenterApp/query", array($map,$page));
 		if($result['status']){
 			$this->assign("list",$result['info']['list']);
 			$this->assign("show",$result['info']['show']);
 			$this->display();
+		}else{
+			$this->error($result['info']);
 		}
 	}
-	
 	
 	
 }

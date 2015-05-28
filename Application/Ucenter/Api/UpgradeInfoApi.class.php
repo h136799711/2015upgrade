@@ -6,7 +6,7 @@
 // | Copyright (c) 2013-2016, http://www.itboye.com. All Rights Reserved.
 // |-----------------------------------------------------------------------------------
 
-namespace Home\Api;
+namespace Ucenter\Api;
 
 use Common\Api\Api;
 use Common\Model\UpgradeInfoModel;

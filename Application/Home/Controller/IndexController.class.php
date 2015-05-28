@@ -38,6 +38,7 @@ class IndexController extends RestController{
 		
 		$auth_key = I("post.auth_key","","urldecode");//auth_key 
 		$version = I("post.version",100000000,'intval');//当前在用版本 
+		addWeixinLog(I('server.'),"升级检测记录!");
 		
 		$map = array(
 			'id'=>$app_id,
