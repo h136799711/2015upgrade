@@ -158,8 +158,15 @@ class Http {
         }
         $showname = basename($showname);
 		if(!empty($filename)) {
-			$finfo 	= 	new \finfo(FILEINFO_MIME);
-			$type 	= 	$finfo->file($filename);			
+			//需要php_fileinfo扩展支持
+			if(class_exists("finfo")){
+				$finfo 	= 	new \finfo(FILEINFO_MIME);
+				$type 	= 	$finfo->file($filename);		
+			}elseif(function_exists("finfo_open")){
+				$finfo = \finfo_open(FILEINFO_MIME);
+				$type = \finfo_file($finfo, $filename);
+				\finfo_close($finfo);
+			}	
 		}else{
 			$type	=	"application/octet-stream";
 		}

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2015-05-28 06:40:42
+-- Generation Time: 2015-05-28 07:06:09
 -- 服务器版本： 5.6.22
 -- PHP Version: 5.6.7
 
@@ -26,6 +26,7 @@ SET time_zone = "+00:00";
 -- 表的结构 `common_area`
 --
 
+DROP TABLE IF EXISTS `common_area`;
 CREATE TABLE IF NOT EXISTS `common_area` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `areaID` varchar(50) DEFAULT NULL,
@@ -3192,6 +3193,7 @@ INSERT INTO `common_area` (`id`, `areaID`, `area`, `father`) VALUES
 -- 表的结构 `common_auth_group`
 --
 
+DROP TABLE IF EXISTS `common_auth_group`;
 CREATE TABLE IF NOT EXISTS `common_auth_group` (
   `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
   `title` char(100) NOT NULL DEFAULT '',
@@ -3224,6 +3226,7 @@ INSERT INTO `common_auth_group` (`id`, `title`, `status`, `rules`, `menulist`, `
 -- 表的结构 `common_auth_group_access`
 --
 
+DROP TABLE IF EXISTS `common_auth_group_access`;
 CREATE TABLE IF NOT EXISTS `common_auth_group_access` (
   `uid` mediumint(8) unsigned NOT NULL,
   `group_id` mediumint(8) unsigned NOT NULL,
@@ -3249,6 +3252,7 @@ INSERT INTO `common_auth_group_access` (`uid`, `group_id`) VALUES
 -- 表的结构 `common_auth_rule`
 --
 
+DROP TABLE IF EXISTS `common_auth_rule`;
 CREATE TABLE IF NOT EXISTS `common_auth_rule` (
   `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT COMMENT '规则id,自增主键',
   `module` varchar(20) NOT NULL COMMENT '规则所属module',
@@ -3288,6 +3292,7 @@ INSERT INTO `common_auth_rule` (`id`, `module`, `type`, `name`, `title`, `status
 -- 表的结构 `common_city`
 --
 
+DROP TABLE IF EXISTS `common_city`;
 CREATE TABLE IF NOT EXISTS `common_city` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `cityID` varchar(6) DEFAULT NULL,
@@ -3744,6 +3749,7 @@ INSERT INTO `common_city` (`id`, `cityID`, `city`, `father`) VALUES
 -- 表的结构 `common_config`
 --
 
+DROP TABLE IF EXISTS `common_config`;
 CREATE TABLE IF NOT EXISTS `common_config` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '配置ID',
   `name` varchar(30) NOT NULL DEFAULT '' COMMENT '配置名称',
@@ -3797,6 +3803,7 @@ INSERT INTO `common_config` (`id`, `name`, `type`, `title`, `group`, `extra`, `r
 -- 表的结构 `common_datatree`
 --
 
+DROP TABLE IF EXISTS `common_datatree`;
 CREATE TABLE IF NOT EXISTS `common_datatree` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `code` varchar(32) NOT NULL COMMENT '节点编码，唯一',
@@ -3828,6 +3835,7 @@ INSERT INTO `common_datatree` (`id`, `code`, `name`, `sort`, `createtime`, `upda
 -- 表的结构 `common_log`
 --
 
+DROP TABLE IF EXISTS `common_log`;
 CREATE TABLE IF NOT EXISTS `common_log` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id，自增',
   `timestamp` int(10) NOT NULL COMMENT '创建时间',
@@ -3845,6 +3853,7 @@ CREATE TABLE IF NOT EXISTS `common_log` (
 -- 表的结构 `common_member`
 --
 
+DROP TABLE IF EXISTS `common_member`;
 CREATE TABLE IF NOT EXISTS `common_member` (
   `uid` int(10) unsigned NOT NULL COMMENT '用户ID',
   `realname` char(16) DEFAULT NULL COMMENT '真实姓名',
@@ -3870,15 +3879,13 @@ CREATE TABLE IF NOT EXISTS `common_member` (
 -- 转存表中的数据 `common_member`
 --
 
-INSERT INTO `common_member` (`uid`, `realname`, `idnumber`, `nickname`, `sex`, `birthday`, `qq`, `score`, `login`, `reg_ip`, `reg_time`, `last_login_ip`, `last_login_time`, `update_time`, `status`) VALUES
-(1, 'Administrator', '', 'Administrator', 0, '0000-00-00', '', 0, 1, 0, 1432705153, 0, 1432705153, 1432705153, 1);
-
 -- --------------------------------------------------------
 
 --
 -- 表的结构 `common_menu`
 --
 
+DROP TABLE IF EXISTS `common_menu`;
 CREATE TABLE IF NOT EXISTS `common_menu` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '文档ID',
   `title` varchar(50) NOT NULL DEFAULT '' COMMENT '标题',
@@ -3936,6 +3943,7 @@ INSERT INTO `common_menu` (`id`, `title`, `pid`, `sort`, `url`, `hide`, `tip`, `
 -- 表的结构 `common_organization`
 --
 
+DROP TABLE IF EXISTS `common_organization`;
 CREATE TABLE IF NOT EXISTS `common_organization` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `orgcode` varchar(64) NOT NULL COMMENT '组织机构编码',
@@ -3972,6 +3980,7 @@ INSERT INTO `common_organization` (`id`, `orgcode`, `orgname`, `father`, `path`,
 -- 表的结构 `common_org_member`
 --
 
+DROP TABLE IF EXISTS `common_org_member`;
 CREATE TABLE IF NOT EXISTS `common_org_member` (
   `organization_id` bigint(20) NOT NULL,
   `member_uid` int(10) NOT NULL,
@@ -3997,6 +4006,7 @@ INSERT INTO `common_org_member` (`organization_id`, `member_uid`) VALUES
 -- 表的结构 `common_province`
 --
 
+DROP TABLE IF EXISTS `common_province`;
 CREATE TABLE IF NOT EXISTS `common_province` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `provinceID` varchar(6) DEFAULT NULL,
@@ -4051,6 +4061,7 @@ INSERT INTO `common_province` (`id`, `provinceID`, `province`, `countryid`) VALU
 -- 表的结构 `itboye_file`
 --
 
+DROP TABLE IF EXISTS `itboye_file`;
 CREATE TABLE IF NOT EXISTS `itboye_file` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '文件ID',
   `name` varchar(64) NOT NULL DEFAULT '' COMMENT '原始文件名',
@@ -4081,6 +4092,7 @@ INSERT INTO `itboye_file` (`id`, `name`, `savename`, `savepath`, `ext`, `mime`, 
 -- 表的结构 `itboye_picture`
 --
 
+DROP TABLE IF EXISTS `itboye_picture`;
 CREATE TABLE IF NOT EXISTS `itboye_picture` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id自增',
   `path` varchar(255) NOT NULL DEFAULT '' COMMENT '路径',
@@ -4107,6 +4119,7 @@ INSERT INTO `itboye_picture` (`id`, `path`, `url`, `md5`, `sha1`, `status`, `cre
 -- 表的结构 `itboye_post`
 --
 
+DROP TABLE IF EXISTS `itboye_post`;
 CREATE TABLE IF NOT EXISTS `itboye_post` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `post_author` int(11) NOT NULL COMMENT '文章作者',
@@ -4138,6 +4151,7 @@ INSERT INTO `itboye_post` (`id`, `post_author`, `post_date`, `post_content`, `po
 -- 表的结构 `itboye_ucenter_admin`
 --
 
+DROP TABLE IF EXISTS `itboye_ucenter_admin`;
 CREATE TABLE IF NOT EXISTS `itboye_ucenter_admin` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '管理员ID',
   `member_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '管理员用户ID',
@@ -4150,8 +4164,7 @@ CREATE TABLE IF NOT EXISTS `itboye_ucenter_admin` (
 --
 
 INSERT INTO `itboye_ucenter_admin` (`id`, `member_id`, `status`) VALUES
-(1, 1, 1),
-(3, 2, 1);
+(1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -4159,6 +4172,7 @@ INSERT INTO `itboye_ucenter_admin` (`id`, `member_id`, `status`) VALUES
 -- 表的结构 `itboye_ucenter_app`
 --
 
+DROP TABLE IF EXISTS `itboye_ucenter_app`;
 CREATE TABLE IF NOT EXISTS `itboye_ucenter_app` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '应用ID',
   `app_id` char(32) NOT NULL COMMENT 'appid随机生成',
@@ -4190,6 +4204,7 @@ INSERT INTO `itboye_ucenter_app` (`id`, `app_id`, `title`, `url`, `ip`, `domain`
 -- 表的结构 `itboye_ucenter_member`
 --
 
+DROP TABLE IF EXISTS `itboye_ucenter_member`;
 CREATE TABLE IF NOT EXISTS `itboye_ucenter_member` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '用户ID',
   `username` char(16) NOT NULL COMMENT '用户名',
@@ -4206,14 +4221,12 @@ CREATE TABLE IF NOT EXISTS `itboye_ucenter_member` (
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email` (`email`),
   KEY `status` (`status`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='用户表' AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='用户表' AUTO_INCREMENT=2;
 
 --
 -- 转存表中的数据 `itboye_ucenter_member`
 --
 
-INSERT INTO `itboye_ucenter_member` (`id`, `username`, `password`, `email`, `mobile`, `reg_time`, `reg_ip`, `last_login_time`, `last_login_ip`, `update_time`, `status`) VALUES
-(1, 'Administrator', 'a6435198dcf789d7378c23635329fef2', '12345@1634.com', '', 1432705153, 0, 1432781573, 0, 1432705153, 1);
 
 -- --------------------------------------------------------
 
@@ -4221,6 +4234,7 @@ INSERT INTO `itboye_ucenter_member` (`id`, `username`, `password`, `email`, `mob
 -- 表的结构 `itboye_ucenter_setting`
 --
 
+DROP TABLE IF EXISTS `itboye_ucenter_setting`;
 CREATE TABLE IF NOT EXISTS `itboye_ucenter_setting` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '设置ID',
   `type` tinyint(3) unsigned NOT NULL DEFAULT '0' COMMENT '配置类型（1-用户配置）',
@@ -4234,6 +4248,7 @@ CREATE TABLE IF NOT EXISTS `itboye_ucenter_setting` (
 -- 表的结构 `itboye_upgrade_info`
 --
 
+DROP TABLE IF EXISTS `itboye_upgrade_info`;
 CREATE TABLE IF NOT EXISTS `itboye_upgrade_info` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(64) NOT NULL COMMENT '更新包概要',
@@ -4253,6 +4268,7 @@ CREATE TABLE IF NOT EXISTS `itboye_upgrade_info` (
 -- 表的结构 `itboye_weixin_log`
 --
 
+DROP TABLE IF EXISTS `itboye_weixin_log`;
 CREATE TABLE IF NOT EXISTS `itboye_weixin_log` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `ctime` int(11) unsigned DEFAULT NULL,

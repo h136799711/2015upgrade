@@ -29,7 +29,10 @@
 		{:W('Menus/left')}
 		<div class="admin-main-content">
 			{:W('Menus/breadcrumb')}
-			<div class="table-responsive app-list">
+			<div class="btn-controls">
+				<a href="{:U('Ucenter/UcenterApp/add')}" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i>添加应用</a>
+			</div>
+			<div class="app-list">
 				<table class="table table-bordered table-condensed">
 					<tr>
 						<th>
@@ -61,10 +64,11 @@
 						<volist name="list" id="vo">
 							<tr>
 								<th>
-									{$vo.id}
+									{$vo.app_id}
 								</th>
 								<th>
-									<a href="{:U('Ucenter/UcenterApp/view',array('id'=>$vo['id']))}" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i>{$vo.title}</a></th>
+									{$vo.title}
+								</th>
 								<th>
 									{$vo.version}
 								</th>
@@ -90,7 +94,7 @@
 									  		<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
 									  	
 												<li><a href="{:U('Ucenter/UcenterApp/edit',array('id'=>$vo['id']))}" class="btn btn-default btn-sm" ><i class="fa fa-edit"></i>编辑</a></li>
-												<li><a href="{:U('Ucenter/UcenterApp/delete',array('id'=>$vo['id']))}" class="ajax-get btn btn-danger btn-sm"><i class="fa fa-trash"></i>删除</a></li>
+												<li><a href="{:U('Ucenter/UcenterApp/delete',array('id'=>$vo['id'],'app_id'=>$vo['app_id']))}" class="ajax-get btn btn-danger btn-sm"><i class="fa fa-trash"></i>删除</a></li>
 									
 									
 									 		</ul>

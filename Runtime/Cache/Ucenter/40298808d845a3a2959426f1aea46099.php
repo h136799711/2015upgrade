@@ -29,8 +29,8 @@
 <script type="text/javascript" src="/github/2015upgrade/Public/cdn/sco1.0.2-8/js/sco.message.js"></script>
 
 <!-- 自定义模块通用样式 -->
-<link rel="stylesheet" type="text/css" href="/github/2015upgrade/Public/Ucenter/css/common.css?v=1432716591" />
-<script type="text/javascript" src="/github/2015upgrade/Public/cdn/common/common.js?v=1432716591"></script>
+<link rel="stylesheet" type="text/css" href="/github/2015upgrade/Public/Ucenter/css/common.css?v=1432780099" />
+<script type="text/javascript" src="/github/2015upgrade/Public/cdn/common/common.js?v=1432780099"></script>
 
 
 
@@ -85,7 +85,7 @@
 							应用KEY
 						</th>
 						<th>
-							应用域名
+							应用授权域名
 						</th>
 						<th>
 							操作
@@ -104,7 +104,7 @@
 								<th>
 									<a href="<?php echo U('Ucenter/AdminApp/view',array('id'=>$vo['id']));?>" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i><?php echo ($vo["title"]); ?></a></th>
 								<th>
-									<?php echo ($vo["cur_version"]); ?>
+									<?php echo ($vo["version"]); ?>
 								</th>
 								<th>
 									<pre><code><?php echo htmlspecialchars($vo['auth_key']);?></code></pre>
@@ -116,7 +116,7 @@
 								<th>
 									<div class="clearfix">
 										<div class="">
-										<a href="<?php echo U('Ucenter/AdminApp/addUpgradePkg',array('id'=>$vo['id']));?>" class="btn btn-sm btn-primary"><i class="fa fa-arrow-circle-o-up"></i>添加升级包</a>
+										<a href="<?php echo U('Ucenter/AdminApp/addUpgradePkg',array('appid'=>$vo['id']));?>" class="btn btn-sm btn-primary"><i class="fa fa-arrow-circle-o-up"></i>添加升级包</a>
 										<a href="<?php echo U('Ucenter/AdminApp/viewUpgradeHistory',array('id'=>$vo['id']));?>" class="btn btn-sm btn-primary"><i class="fa fa-history"></i>查看升级历史</a>
 										</div>
 										<br />

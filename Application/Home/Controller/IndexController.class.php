@@ -17,12 +17,12 @@ class IndexController extends RestController{
 	public function _empty(){
 		
 		$data = array(
-			'status'=>false,
+			'errcode'=>-1,
 			"info"=>"禁止访问!",
 		);
 		$this->response($data,"json");
 	}
-	
+		
 	/**
 	 * 查询应用是否有更新包
 	 * errcode= 100 错误的appid
@@ -34,20 +34,25 @@ class IndexController extends RestController{
 	 */
 	public function upgrade_check_post_json(){
 		
-		$app_id = I('get.appid',0);//APPID
+		$app_id = I('get.app_id',0);//APPID
 		
 		$auth_key = I("post.auth_key","","urldecode");//auth_key 
 		$version = I("post.version",100000000,'intval');//当前在用版本 
-		addWeixinLog(I('server.'),"升级检测记录!");
-		
+		addWeixinLog(I('post.'),"升级检测记录!应用ID=".$app_id);
 		$map = array(
-			'id'=>$app_id,
+			'app_id'=>$app_id,
 		);
 		
 		$result = apiCall("Home/UcenterApp/getInfo", array($map));
 		
 		if(!$result['status']){
 			LogRecord($result['info'], __FILE__.__LINE__);
+			
+			$data = array(
+				'errcode'=>-1,
+				'info'=> $result['info'],
+			);
+			$this->response($data,"json");
 		}
 		
 		//检测APPID
@@ -79,7 +84,7 @@ class IndexController extends RestController{
 			$this->response($data,"json");
 		}
 		
-		if($version > intval($appinfo['version'])){
+		if($version < 1000 || $version > intval($appinfo['version'])){
 			$data = array(
 				'errcode'=>103,
 				'info'=>"非法版本号!",
@@ -88,12 +93,13 @@ class IndexController extends RestController{
 		}
 		
 		if($version < intval($appinfo['version'])){
-			$map = array("id"=>$app_id);
-			
+			$map = array("app_id"=>$app_id);
+			$map['status'] = 1;
 			$map['version'] = array('gt',$version);
-			
+			$order = "version asc";
+			$fields = "name,desc,version,create_time,upgrade_pkg_url";
 			//TODO: 从更新包表中获取待更新包记录
-			$result = apiCall("Home/UpgradeInfo/queryNoPaging", array($map));
+			$result = apiCall("Home/UpgradeInfo/queryNoPaging", array($map,$order,$fields));
 			if(!$result['status']){
 				LogRecord($result['info'], __FILE__.__LINE__);
 				$this->response("系统发生错误!","json");

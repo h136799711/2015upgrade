@@ -1,0 +1,83 @@
+<extend name="template/base_index" />
+
+
+<block name="area_header">
+<script type="text/javascript" src="__CDN__/jquery-validation/1.13.1/jquery.validate.min.js"></script>
+	<script type="text/javascript" src="__CDN__/jquery-validation/1.13.1/localization/messages_zh.min.js"></script>
+	
+
+</block>
+
+<block name="area_body">
+	{:W('Menus/topbar')}
+	<div class="admin-main container-fluid">
+		{:W('Menus/left')}
+		<div class="admin-main-content">
+			{:W('Menus/breadcrumb')}
+		
+			<!-- 带验证 form -->
+			<form class="form-horizontal well validateForm">
+				<fieldset>
+					<legend>添加一个应用
+						</legend>
+					<div class="form-group">
+						<label for="inputtitle" class="col-md-2 col-lg-2 control-label">应用APPID</label>
+						<div class="col-md-10 col-lg-10">
+							<input type="hidden" class="required form-control input-short" value="{$app_id}"  name="app_id" >
+							<div>{$app_id}</div>
+							<div class="help-block">(不允许修改，系统自动生成)</div>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label for="inputtitle" class="col-md-2 col-lg-2 control-label">应用名称</label>
+						<div class="col-md-10 col-lg-10">
+							<input type="text" class="required form-control input-short" name="title" id="inputtitle" placeholder="{:L('PLACEHOLDER_TITLE')}">
+							<div class="help-block">(填写应用的名称)</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputurl" class="col-md-2 col-lg-2 control-label">应用交互的入口地址</label>
+						<div class="col-md-10 col-lg-10">
+							<input type="text" class="required form-control input-short" name="url" id="inputurl" placeholder="{:L('PLACEHOLDER_TITLE')}">
+							<div class="help-block">(完整的域名，包含http,https开头，例子：http://app.baidu.com/ucenter/index.php,http://www.baidu.com,http://app.baidu.com。都是正确的)</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputdomain" class="col-md-2 col-lg-2 control-label">应用域名</label>
+						<div class="col-md-10 col-lg-10">
+							<input type="text" class="required form-control input-short" name="domain" id="inputdomain" placeholder="请输入应用部署的域名">
+							<div class="help-block">(完整的域名，不含http,https开头，例子：www.baidu.com,app.baidu.com。都是正确的)</div>
+						</div>
+					</div>
+					<div class="form-group">
+
+						<label for="inputallow_ip" class="col-md-2 col-lg-2 control-label">应用可访问IP</label>
+						<div class="col-md-10 col-lg-10">
+							<textarea name="allow_ip" class="form-control" rows="4"></textarea>
+							<div class="help-block">(不填，则允许任何IP)</div>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label for="btns" class="col-md-2 col-lg-2 control-label">&nbsp;</label>
+						<div class="col-lg-10 col-md-10">
+							<a target-form="validateForm" class="ajax-post btn btn-primary" href="{:U('Ucenter/UcenterApp/add')}" autofocus="autofocus"><i class="fa fa-save"></i> {:L('BTN_SAVE')}</a>
+							<a class="btn btn-default" href="{:U('Ucenter/UcenterApp/index')}"><i class="fa fa-reply"></i>返回</a>
+						</div>
+					</div>
+				</fieldset>
+			</form>
+			<!-- form -->
+
+		</div>
+		<!-- END admin-main-content -->
+	</div>
+		<!-- END admin-main-->
+</block>
+
+<block name="area_footer">
+
+<script>
+	</script>
+</block>

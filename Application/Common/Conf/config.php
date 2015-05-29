@@ -8,7 +8,7 @@ return array(
 	'LOAD_EXT_CONFIG' => 'datatree,auth', 
 	//唯一管理员用户配置	
    'USER_ADMINISTRATOR' => 1, //管理员用户ID
-   'MODULE_DENY_LIST'      =>  array('Common','Runtime','Ucenter','Uclient'),
+   'MODULE_DENY_LIST'      =>  array('Common','Runtime','Uclient'),
    'URL_CASE_INSENSITIVE' =>false,
 	// 程序版本
 	// DONE:移到数据库中

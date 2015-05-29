@@ -185,7 +185,7 @@ function create_tables($db, $prefix = ''){
 	$sql = file_get_contents(MODULE_PATH . 'Data/install.sql');
 	$sql = str_replace("\r", "\n", $sql);
 	$sql = explode(";\n", $sql);
-
+	
 	//替换表前缀
 	$orginal = C('ORIGINAL_TABLE_PREFIX');
 	$sql = str_replace(" `{$orginal}", " `{$prefix}", $sql);
